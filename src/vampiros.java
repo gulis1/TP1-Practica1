@@ -1,4 +1,4 @@
-package logic;
+
 import java.util.Scanner;
 import logic.Level;
 import control.Controller;

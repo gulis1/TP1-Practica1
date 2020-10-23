@@ -18,7 +18,16 @@ public class GamePrinter {
 	}
 	
 	private void encodeGame(Game game) {
-		// TODO fill your code
+		
+		board = new String[this.numRows][this.numCols];
+		
+		for (int i = 0; i < this.numRows; i++) {
+			
+			for (int j = 0; j < this.numCols; j++) {
+				
+				board[i][j] = "V";
+			}
+		}
 	}
 	
 	 public String toString() {

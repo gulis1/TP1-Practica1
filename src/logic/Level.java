@@ -31,5 +31,15 @@ public enum Level {
             allLevels += level.name() + separator;
         return allLevels.substring(0, allLevels.length() - separator.length());
     }
+    
+    public int getDimX() { return this.dim_x; }
+    
+    public int getDimY() { return this.dim_y; }
+   
+    public double getFrecuencia() { return this.vampireFrequency; }
+    
+    public int numVampirosLv() { return this.numberOfVampires; }
+    
+    public int getDimy() { return this.dim_y; }
 
 }

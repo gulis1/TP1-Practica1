@@ -4,7 +4,7 @@ import logic.Level;
 import control.Controller;
 import logic.Game;
 
-public class vampiros {
+public class Main {
 		public static final String version = "1.0";
 		public static final String usageMsg = "Usage: Vampire slayer <level> [seed]";
 		public static final String welcomeMsg = String.format("Buffy the Vampire Slayer " + version + "%n");

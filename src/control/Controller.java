@@ -3,6 +3,7 @@ package control;
 import java.util.Scanner;
 
 import logic.Game;
+import view.GamePrinter;
 
 public class Controller {
 
@@ -22,18 +23,17 @@ public class Controller {
 
     private Game game;
     private Scanner scanner;
+    private GamePrinter printer;
     
     public Controller(Game game, Scanner scanner) {
 	    this.game = game;
 	    this.scanner = scanner;
     }
     
-    public void  printGame() {
-   	 System.out.println(game);
-   }
     
-    public void run() {
-		// TODO fill your code
+    public void run() {	
+    	System.out.println(this.game.printGame());
+    	
     }
 
 }

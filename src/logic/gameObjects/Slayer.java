@@ -1,16 +1,18 @@
-package logic;
+package logic.gameObjects;
+
+import logic.Game;
 
 public class Slayer {
 	
 	
 	private int x, y, vida;
-	final int daño;
+	final int dmg;
 	private Game game;
 	
 	
 	public Slayer(int x, int y) {
 		this.vida = 3;
-		this.daño = 1;
+		this.dmg = 1;
 		this.x = x;
 		this.y = y;	
 	}

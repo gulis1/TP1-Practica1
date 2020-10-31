@@ -1,5 +1,6 @@
 package control;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import logic.Game;
@@ -24,16 +25,25 @@ public class Controller {
     private Game game;
     private Scanner scanner;
     private GamePrinter printer;
-    
+
     public Controller(Game game, Scanner scanner) {
 	    this.game = game;
 	    this.scanner = scanner;
     }
     
     
-    public void run() {	
-    	System.out.println(this.game.printGame());
-    	
+    public void run() {
+
+		do {
+			game.getBoard().summonVampires(game.getLevel());
+			System.out.println(this.game.printGame());
+			game.getBoard().getVampireList().move();
+		}while (!game.getBoard().getVampireList().alguienEnFinal());
+
+		System.out.println(this.game.printGame());
+		System.out.println("Game over");
+
+
     }
 
 }

@@ -7,15 +7,17 @@ public class Vampiro {
 	private Game game;
 	
 	
-	public Vampiro(int x, int y) {
+	public Vampiro(int x, int y, Game game) {
 		this.vida = 5;
 		this.dmg = 1;
 		this.x = x;
-		this.y = y;	
+		this.y = y;
+		this.game = game;
 	}
 
 	public void move() {
-		x--;
+		if (!game.getBoard().getSlayerList().existeSlayerEn(x - 1, y) && !game.getBoard().getVampireList().existeVampEn(x - 1,y))
+			x--;
 	}
 	
 	public int getX() {

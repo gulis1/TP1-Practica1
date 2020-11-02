@@ -1,15 +1,15 @@
 package logic.list;
 
 import logic.gameObjects.Slayer;
+import logic.gameObjects.Vampiro;
 
 public class SlayerList {
 
-	private Slayer[] lista;
+	private Slayer[] lista = new Slayer[32];
 	private int numSlayer;
 
 	public void SlayerLista() {
 		numSlayer = 0;
-		lista  = new Slayer[32];
 	}
 
 	public void delSlayer(int ind) {
@@ -29,7 +29,24 @@ public class SlayerList {
 
 	}
 
-	public void atack() {
+	public boolean existeSlayerEn(int x, int y) {
+
+		int i = 0;
+		boolean existe = false;
+
+		while (i < numSlayer && !existe) {
+
+			if (lista[i].getX() == x && lista[i].getY() == y){
+				existe = true;
+			}
+
+			i++;
+		}
+
+		return existe;
+	}
+
+	public void attack() {
 
 		for (int i = 0; i < numSlayer; i++) {
 
@@ -37,5 +54,13 @@ public class SlayerList {
 		}
 
 
+	}
+
+	public Slayer[] getList() {
+		return lista;
+	}
+
+	public int getNumSlayer(){
+		return numSlayer;
 	}
 }

@@ -2,6 +2,7 @@ package view;
 
 import com.sun.org.apache.bcel.internal.classfile.EnumElementValue;
 import logic.Game;
+import logic.gameObjects.Slayer;
 import logic.gameObjects.Vampiro;
 import utils.MyStringUtils;
 
@@ -22,8 +23,9 @@ public class GamePrinter {
 	private void encodeGame(Game game) {
 		
 		board = new String[this.numRows][this.numCols];
-		Vampiro[] lista = game.getBoard().getVampireList().getList();
-		int cont = game.getBoard().getVampireList().getNumVamp();
+
+		Vampiro[] listaV = game.getBoard().getVampireList().getList();
+		int contV = game.getBoard().getVampireList().getNumVamp();
 
 		for (int i=0; i <numRows; i++){
 			for (int j=0; j< numCols; j++){
@@ -31,9 +33,19 @@ public class GamePrinter {
 			}
 		}
 
-		for (int i=0; i<cont; i++) {
-			board[lista[i].getY()][lista[i].getX()] = "V";
+
+		for (int i=0; i<contV; i++) {
+			board[listaV[i].getY()][listaV[i].getX()] = "V";
 		}
+
+		Slayer[] listaS = game.getBoard().getSlayerList().getList();
+		int contS = game.getBoard().getSlayerList().getNumSlayer();
+
+		for (int i=0; i<contS; i++) {
+			board[listaS[i].getY()][listaS[i].getX()] = "S";
+		}
+
+
 	}
 	
 	 public String toString() {

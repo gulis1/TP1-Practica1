@@ -30,15 +30,64 @@ public class Controller {
 	    this.game = game;
 	    this.scanner = scanner;
     }
-    
+
+    private boolean menu() {
+
+    	boolean salir = false;
+		boolean accionCorrecta = false;
+
+		while (!accionCorrecta && !salir)
+		{
+			System.out.println(prompt);
+
+			String action = scanner.nextLine();
+			String[] command = action.trim().toLowerCase().split(" ");
+
+			switch(command[0])  {
+
+				case "h":
+				case "help": {
+					System.out.println(helpMsg);
+					break;
+				}
+				case "e":
+				case "exit": {
+					salir = true;
+					break;
+				}
+
+				case "a":
+				case "add": {
+					if (game.addSlayer(Integer.parseInt(command[1]), Integer.parseInt(command[2])))
+						accionCorrecta = true;
+
+					break;
+
+				}
+
+
+
+			}
+		}
+
+		return salir;
+	}
     
     public void run() {
 
+    	boolean salir = false;
+    	// Bucle del juego
 		do {
-			game.getBoard().summonVampires(game.getLevel());
+			game.summonVampires();
 			System.out.println(this.game.printGame());
-			game.getBoard().getVampireList().move();
-		}while (!game.getBoard().getVampireList().alguienEnFinal());
+			salir = menu();
+			game.moveVampires();
+
+
+
+
+
+		}while (!game.isFinished() && !salir);
 
 		System.out.println(this.game.printGame());
 		System.out.println("Game over");

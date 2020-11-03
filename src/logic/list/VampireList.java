@@ -4,11 +4,11 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 import logic.gameObjects.Vampiro;
 
 public class VampireList {
-    private Vampiro[] lista = new Vampiro[10];
+    private Vampiro[] lista;
     private int numVamp;
 
-    public void VampireLista() {
-        //this.lista =  new Vampiro[10];
+    public  VampireList() {
+        this.lista =  new Vampiro[10];
         this.numVamp = 0;
     }
 

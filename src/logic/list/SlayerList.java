@@ -5,11 +5,12 @@ import logic.gameObjects.Vampiro;
 
 public class SlayerList {
 
-	private Slayer[] lista = new Slayer[32];
+	private Slayer[] lista;
 	private int numSlayer;
 
-	public void SlayerLista() {
+	public SlayerList() {
 		numSlayer = 0;
+		lista =  new Slayer[32];
 	}
 
 	public void delSlayer(int ind) {

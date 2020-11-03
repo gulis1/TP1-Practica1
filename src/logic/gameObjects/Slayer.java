@@ -31,5 +31,4 @@ public class Slayer {
 		return y;
 	}
 
-
 }

@@ -65,6 +65,14 @@ public class Controller {
 
 				}
 
+				case "n":
+				case "none":
+				case "":	{
+					accionCorrecta = true;
+					break;
+				}
+
+
 
 
 			}
@@ -79,13 +87,11 @@ public class Controller {
     	// Bucle del juego
 		do {
 			game.summonVampires();
+			System.out.printf("Ciclo: %d, Monedas: %d, Vampiros Restantes: %d, Vampiros en tablero : %d", game.getCiclo(), game.getPlayer().getMonedas(), game.getBoard().getVampRestantes(), game.getBoard().getVampTablero() );
 			System.out.println(this.game.printGame());
 			salir = menu();
 			game.moveVampires();
-
-
-
-
+			game.incrementarMonedas();
 
 		}while (!game.isFinished() && !salir);
 

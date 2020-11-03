@@ -1,5 +1,6 @@
 package logic;
 
+import logic.gameObjects.Player;
 import view.GamePrinter;
 
 import java.util.Random;
@@ -11,13 +12,18 @@ public class Game {
 	private GamePrinter printer;
 	private GameObjectBoard board;
 	private Random rng;
+	private int ciclo;
+	private Player player;
 	
 	public Game(Long seed, Level level) {
+		this.ciclo = 0;
 		this.level = level;
 		this.seed = seed;
 		rng = new Random(seed);
 	    printer =  new GamePrinter(this, this.level.getDimX(), this.level.getDimY());
 	    board = new GameObjectBoard(rng, this);
+	    player = new Player(rng);
+
 	}
 	
 	
@@ -54,7 +60,7 @@ public class Game {
 	public boolean addSlayer(int x, int y) {
 		boolean sePuede = false;
 
-		if (sePuedePonerSlayerEn(x,y)) { //y monedas suficientes
+		if (board.sePuedePonerSlayerEn(x,y) && player.restarMonedas(50)) {
 			sePuede = true;
 
 			board.addSlayer(x,y);
@@ -64,8 +70,22 @@ public class Game {
 		return sePuede;
 	}
 
-	private boolean sePuedePonerSlayerEn(int x, int y) {
 
-		return x >= 0 && x < level.getDimX() - 1 && y >= 0 && y < level.getDimY() && !board.hayVampEn(x,y) && !board.haySlayerEn(x,y);
+
+	private void incrementarCiclo() {
+		ciclo++;
 	}
-}
+
+	public int getCiclo() {
+		return ciclo;
+	}
+
+	public void incrementarMonedas () {
+		player.addMonedas();
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+ }

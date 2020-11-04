@@ -36,6 +36,7 @@ public class GamePrinter {
 
 		for (int i=0; i<contV; i++) {
 			board[listaV[i].getY()][listaV[i].getX()] = "V";
+			System.out.printf("[%d]",listaV[i].getVida());
 		}
 
 		Slayer[] listaS = game.getBoard().getSlayerList().getList();

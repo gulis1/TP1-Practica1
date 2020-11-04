@@ -4,6 +4,7 @@ import logic.Game;
 
 public class Vampiro {
 	private int x, y, vida, dmg, velocidad;
+	private boolean muerto;
 	private Game game;
 	
 	
@@ -12,6 +13,7 @@ public class Vampiro {
 		this.dmg = 1;
 		this.x = x;
 		this.y = y;
+		//this.muerto= false;
 		this.game = game;
 	}
 
@@ -27,5 +29,10 @@ public class Vampiro {
 	public int getY() {
 		return y;
 	}
+	
+	public int getVida() {
+		return vida;
+	}
+    
 
 }

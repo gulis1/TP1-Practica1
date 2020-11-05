@@ -35,14 +35,14 @@ public class GamePrinter {
 
 
 		for (int i=0; i<contV; i++) {
-			board[listaV[i].getY()][listaV[i].getX()] = "V";
+			board[listaV[i].getY()][listaV[i].getX()] = String.format("V [%d]", listaV[i].getVida());
 		}
 
 		Slayer[] listaS = game.getBoard().getSlayerList().getList();
 		int contS = game.getBoard().getSlayerList().getNumSlayer();
 
 		for (int i=0; i<contS; i++) {
-			board[listaS[i].getY()][listaS[i].getX()] = "S";
+			board[listaS[i].getY()][listaS[i].getX()] = String.format("S [%d]", listaS[i].getVida());
 		}
 
 

@@ -4,6 +4,7 @@ import logic.Game;
 
 public class Vampiro {
 	private int x, y, vida, dmg, velocidad;
+	private boolean muerto;
 	private Game game;
 	
 	
@@ -27,5 +28,22 @@ public class Vampiro {
 	public int getY() {
 		return y;
 	}
+
+	public void restarVida() {
+		vida--;
+	}
+
+	public void attack() {
+
+		if (game.getBoard().haySlayerEn(x-1, y) && vida > 0) {
+			game.getBoard().getSlayerList().restarVidaA(x-1, y);
+
+		}
+	}
+	
+	public int getVida() {
+		return vida;
+	}
+    
 
 }

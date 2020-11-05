@@ -65,6 +65,20 @@ public class GameObjectBoard {
 		return x >= 0 && x < game.getLevel().getDimX() - 1 && y >= 0 && y < game.getLevel().getDimY() && !hayVampEn(x,y) && !haySlayerEn(x,y);
 	}
 
+	public void removeDead() {
+
+		vampireList.removeDeadVampires();
+		slayerList.removeDeadSlayers();
+
+
+	}
+
+	public void attack() {
+		slayerList.attack();
+		vampireList.attack();
+		removeDead();
+	}
+
 	public int getVampRestantes(){
 		return vampRestantes;
 	}

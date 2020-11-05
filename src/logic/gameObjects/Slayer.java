@@ -16,7 +16,7 @@ public class Slayer {
 		this.dmg = 1;
 		this.x = x;
 		this.y = y;
-		//this.muerto= false;
+		this.muerto= false;
 		this.game = game;
 	}
 	
@@ -32,22 +32,32 @@ public class Slayer {
 	public int getY() {
 		return y;
 	}
+
+	public void restarVida() {
+		vida--;
+	}
 	
-	/*public void attack(int x, int y) {
+	public void attack() {
 		
 		int i=x+1;
 		boolean primerVamp=false;
 		
 	      while(i<game.getLevel().getDimX()-1 && !primerVamp) {
 			
-			if(game.getBoard().hayVampEn(i, y)) {
-				
+			if (game.getBoard().hayVampEn(i, y)) {
+				primerVamp = true;
+				game.getBoard().getVampireList().restarVidaA(i, y);
 				
 			}
-			
+
+			i++;
 		}
 		
-	}*/
+	}
+
+	public int getVida() {
+		return vida;
+	}
 	      
 
 }

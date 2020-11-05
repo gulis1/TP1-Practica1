@@ -48,15 +48,6 @@ public class Game {
 		return board.getVampireList().alguienEnFinal();
 	}
 
-	public void summonVampires() {
-
-		board.summonVampires(level);
-	}
-
-	public void moveVampires() {
-		board.getVampireList().move();
-	}
-
 	public boolean addSlayer(int x, int y) {
 		boolean sePuede = false;
 
@@ -70,19 +61,19 @@ public class Game {
 		return sePuede;
 	}
 
-
-
-	private void incrementarCiclo() {
+	public void update() {
 		ciclo++;
+		player.addMonedas();
+		if (ciclo % 2 == 0)
+			board.getVampireList().move();
+		board.attack();
+		board.summonVampires(level);
 	}
 
 	public int getCiclo() {
 		return ciclo;
 	}
 
-	public void incrementarMonedas () {
-		player.addMonedas();
-	}
 
 	public Player getPlayer() {
 		return player;

@@ -47,14 +47,37 @@ public class SlayerList {
 		return existe;
 	}
 
+	// Le resta al vampiro que se encuentra en la posicion del tablero (x,y) un de vida. Si no hay vampiro en esa posicion no se hace nada.
+	public void restarVidaA(int x, int y) {
+		int i = 0;
+		boolean encontrado = false;
+
+		while (i < numSlayer && !encontrado ) {
+
+			if ( lista[i].getX() == x && lista[i].getY() == y) {
+				lista[i].restarVida();
+				encontrado = true;
+			}
+
+			i++;
+		}
+
+	}
+
 	public void attack() {
 
 		for (int i = 0; i < numSlayer; i++) {
 
-			//lista[i].attack();
+			lista[i].attack();
 		}
+	}
 
+	public void removeDeadSlayers() {
 
+		for (int i = 0; i < numSlayer; i++) {
+			if (lista[i].getVida() == 0)
+				delSlayer(i);
+		}
 	}
 
 	public Slayer[] getList() {
@@ -64,4 +87,6 @@ public class SlayerList {
 	public int getNumSlayer(){
 		return numSlayer;
 	}
+
+
 }

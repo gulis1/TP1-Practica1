@@ -33,7 +33,7 @@ public class VampireList {
 
         for (int i = 0; i < numVamp; i++) {
 
-            //lista[i].attack();
+            lista[i].attack();
         }
     }
 
@@ -51,7 +51,7 @@ public class VampireList {
 
         while (i < numVamp && !existe) {
 
-            if (lista[i].getX() == x && lista[i].getY() == y){
+            if (lista[i].getX() == x && lista[i].getY() == y && lista[i].getVida() > 0){
                 existe = true;
             }
 
@@ -74,6 +74,31 @@ public class VampireList {
         }
 
         return fin;
+    }
+
+    // Le resta al vampiro que se encuentra en la posicion del tablero (x,y) un de vida. Si no hay vampiro en esa posicion no se hace nada.
+    public void restarVidaA(int x, int y) {
+        int i = 0;
+        boolean encontrado = false;
+
+        while (i < numVamp && !encontrado ) {
+
+            if ( lista[i].getX() == x && lista[i].getY() == y) {
+                lista[i].restarVida();
+                encontrado = true;
+            }
+
+            i++;
+        }
+
+    }
+
+    public void removeDeadVampires() {
+
+        for (int i = 0; i < numVamp; i++) {
+            if (lista[i].getVida() <= 0)
+                delVampire(i);
+        }
     }
 
     public Vampiro[] getList() {

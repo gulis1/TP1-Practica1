@@ -36,8 +36,7 @@ public class Controller {
     	boolean salir = false;
 		boolean accionCorrecta = false;
 
-		while (!accionCorrecta && !salir)
-		{
+		while (!accionCorrecta && !salir) {
 			System.out.println(prompt);
 
 			String action = scanner.nextLine();
@@ -72,10 +71,13 @@ public class Controller {
 					break;
 				}
 
-
-
+				default:
+					System.out.println(unknownCommandMsg);
 
 			}
+
+			if (!accionCorrecta)
+				System.out.println(invalidCommandMsg);
 		}
 
 		return salir;

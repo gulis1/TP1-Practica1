@@ -24,7 +24,7 @@ public class GameObjectBoard {
 
     public void summonVampires(Level level) {
 
-		if (vampRestantes > 0 && rng.nextFloat() < level.getFrecuencia()) {
+		if (vampRestantes > 0 && rng.nextDouble() < level.getFrecuencia()) {
 			int x = level.getDimX() - 1;
 			int y = rng.nextInt(level.getDimY());
 
@@ -36,10 +36,6 @@ public class GameObjectBoard {
 
 	}
 
-	public VampireList getVampireList() {
-		return vampireList;
-	}
-
 	public boolean hayVampEn(int x, int y) {
 		return vampireList.existeVampEn(x,y);
 	}
@@ -48,16 +44,8 @@ public class GameObjectBoard {
 		return slayerList.existeSlayerEn(x,y);
 	}
 
-	public SlayerList getSlayerList() {
-		return slayerList;
-	}
-
 	public void addSlayer(int x, int y) {
 		slayerList.addSlayer(new Slayer(x,y, game));
-	}
-
-	public int getVampTablero() {
-		return vampireList.getNumVamp();
 	}
 
 	public boolean sePuedePonerSlayerEn(int x, int y) {
@@ -81,5 +69,17 @@ public class GameObjectBoard {
 
 	public int getVampRestantes(){
 		return vampRestantes;
+	}
+
+	public int getVampTablero() {
+		return vampireList.getNumVamp();
+	}
+
+	public VampireList getVampireList() {
+		return vampireList;
+	}
+
+	public SlayerList getSlayerList() {
+		return slayerList;
 	}
 }

@@ -24,7 +24,7 @@ public class Player {
     }
 
     public void addMonedas() {
-        if (rng.nextFloat() < 0.5 ) {
+        if (rng.nextFloat() > 0.5 ) {
             monedas += 10;
         }
     }

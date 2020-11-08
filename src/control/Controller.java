@@ -21,6 +21,7 @@ public class Controller {
 	public static final String unknownCommandMsg = String.format("Unknown command");
 	public static final String invalidCommandMsg = String.format("Invalid command");
 	public static final String invalidPositionMsg = String.format("Invalid position");
+	public static final String noCoinsMsg = String.format("Not enough coins");
 
     private Game game;
     private Scanner scanner;
@@ -57,12 +58,37 @@ public class Controller {
 
 				case "a":
 				case "add": {
-					if (game.addSlayer(Integer.parseInt(command[1]), Integer.parseInt(command[2])))
-						accionCorrecta = true;
+
+					try {
+						int error = game.addSlayer(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+
+						if (error == 0)
+							accionCorrecta = true;
+
+						else if (error == 1)
+							System.out.println(invalidPositionMsg);
+
+						else
+							System.out.println(noCoinsMsg);
+
+					}
+
+					catch (Exception e) {
+						System.out.println(invalidCommandMsg);
+					}
+
+
 
 					break;
 
 				}
+
+				case "reset":
+				case "r": {
+					game.reset();
+					accionCorrecta = true;
+				}
+
 
 				case "n":
 				case "none":
@@ -76,8 +102,6 @@ public class Controller {
 
 			}
 
-			if (!accionCorrecta)
-				System.out.println(invalidCommandMsg);
 		}
 
 		return salir;
@@ -87,17 +111,24 @@ public class Controller {
 
     	boolean salir = false;
     	// Bucle del juego
-		do {
-			System.out.printf("Ciclo: %d, Monedas: %d, Vampiros Restantes: %d, Vampiros en tablero : %d", game.getCiclo(), game.getPlayer().getMonedas(), game.getBoard().getVampRestantes(), game.getBoard().getVampTablero() );
+		while (game.isFinished() == 0 && !salir){
+			System.out.printf("Ciclo: %d\nMonedas: %d\nVampiros Restantes: %d\nVampiros en tablero : %d", game.getCiclo(), game.getPlayer().getMonedas(), game.getBoard().getVampRestantes(), game.getBoard().getVampTablero());
 			System.out.println(this.game.printGame());
-			game.update();
 			salir = menu();
+			game.update();
 
 
-		}while (!game.isFinished() && !salir);
+		}
 
+		System.out.printf("Ciclo: %d\nMonedas: %d\nVampiros Restantes: %d\nVampiros en tablero : %d", game.getCiclo(), game.getPlayer().getMonedas(), game.getBoard().getVampRestantes(), game.getBoard().getVampTablero());
 		System.out.println(this.game.printGame());
-		System.out.println("Game over");
+
+		if (game.isFinished() == 1)
+			System.out.println("Game over");
+
+		else if (game.isFinished() == 2)
+			System.out.println("You win");
+
 
 
     }

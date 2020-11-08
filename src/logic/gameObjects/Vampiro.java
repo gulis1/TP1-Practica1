@@ -3,22 +3,33 @@ package logic.gameObjects;
 import logic.Game;
 
 public class Vampiro {
-	private int x, y, vida, dmg, velocidad;
-	private boolean muerto;
+	private int x, y, vida;
 	private Game game;
+	private boolean shouldMove;
 	
 	
 	public Vampiro(int x, int y, Game game) {
 		this.vida = 5;
-		this.dmg = 1;
 		this.x = x;
 		this.y = y;
 		this.game = game;
+		this.shouldMove = false;
 	}
 
 	public void move() {
-		if (!game.getBoard().getSlayerList().existeSlayerEn(x - 1, y) && !game.getBoard().getVampireList().existeVampEn(x - 1,y))
-			x--;
+
+		if (shouldMove) {
+			if (!game.getBoard().getSlayerList().existeSlayerEn(x - 1, y) && !game.getBoard().getVampireList().existeVampEn(x - 1,y))
+				x--;
+
+			shouldMove = false;
+		}
+
+		else
+			shouldMove = true;
+
+
+
 	}
 	
 	public int getX() {

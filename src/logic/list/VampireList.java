@@ -7,6 +7,7 @@ public class VampireList {
     private Vampiro[] lista;
     private int numVamp;
 
+
     public  VampireList() {
         this.lista =  new Vampiro[10];
         this.numVamp = 0;

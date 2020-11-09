@@ -7,7 +7,6 @@ public class Slayer {
 	
 	private int x, y, vida;
 	final int dmg;
-	private boolean muerto;
 	private Game game;
 	
 	
@@ -16,27 +15,10 @@ public class Slayer {
 		this.dmg = 1;
 		this.x = x;
 		this.y = y;
-		this.muerto= false;
 		this.game = game;
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void restarVida() {
-		vida--;
-	}
-	
+//busca al primer vampiro en la fila del slayer y le ataca.
 	public void attack() {
 		
 		int i=x+1;
@@ -53,6 +35,19 @@ public class Slayer {
 			i++;
 		}
 		
+	}
+//resta la vida del slayer.
+	public void restarVida() {
+	vida--;
+}
+
+// funciones getters.
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 
 	public int getVida() {

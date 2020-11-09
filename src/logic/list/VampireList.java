@@ -1,18 +1,19 @@
 package logic.list;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import logic.gameObjects.Vampiro;
 
 public class VampireList {
     private Vampiro[] lista;
     private int numVamp;
 
-
+// constructor
     public  VampireList() {
         this.lista =  new Vampiro[10];
         this.numVamp = 0;
     }
-
+    
+//Borra el vampiro en la posicion indice .
     public void delVampire(int ind) {
 
         numVamp--;
@@ -23,13 +24,15 @@ public class VampireList {
         }
     }
 
+    // añade un vampiro a la lista.
     public void addVampire(Vampiro vamp) {
 
         lista[numVamp] = vamp;
         numVamp++;
 
     }
-
+    
+//Recorre la lista para que los vampiros ataquen.
     public void attack() {
 
         for (int i = 0; i < numVamp; i++) {
@@ -38,6 +41,7 @@ public class VampireList {
         }
     }
 
+    //recorre la lista para hacer que los vampiros se muevan en su turno
     public void move() {
         for (int i = 0; i < numVamp; i++) {
 
@@ -45,6 +49,7 @@ public class VampireList {
         }
     }
 
+    //comprueba si existe un vampiro en las coordenadas "x" e "y".
     public boolean existeVampEn(int x, int y) {
 
         int i = 0;
@@ -62,6 +67,7 @@ public class VampireList {
         return existe;
     }
 
+    // comprueba si hay un vampiro en la ultima columna del tablero.
     public boolean alguienEnFinal() {
         int i = 0;
         boolean fin = false;
@@ -77,7 +83,7 @@ public class VampireList {
         return fin;
     }
 
-    // Le resta al vampiro que se encuentra en la posicion del tablero (x,y) un de vida. Si no hay vampiro en esa posicion no se hace nada.
+    // Le resta vida al vampiro que se encuentra en la posicion del tablero (x,y) un de vida. Si no hay vampiro en esa posicion no se hace nada.
     public void restarVidaA(int x, int y) {
         int i = 0;
         boolean encontrado = false;
@@ -94,6 +100,7 @@ public class VampireList {
 
     }
 
+    //comprueba si un vampiro esta muerto para eliminarlo de la lista.
     public void removeDeadVampires() {
 
         for (int i = 0; i < numVamp; i++) {
@@ -101,7 +108,8 @@ public class VampireList {
                 delVampire(i);
         }
     }
-
+    
+// funciones getters.
     public Vampiro[] getList() {
         return lista;
     }

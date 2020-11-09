@@ -15,6 +15,7 @@ public class Game {
 	private int ciclo;
 	private Player player;
 	
+	//contructor
 	public Game(Long seed, Level level) {
 		this.ciclo = 0;
 		this.level = level;
@@ -26,7 +27,7 @@ public class Game {
 
 	}
 
-
+//todas la funciones que se tienen que hacer en cada ciclo.
 	public void update() {
 		ciclo++;
 		player.addMonedas();
@@ -34,18 +35,18 @@ public class Game {
 		board.attack();
 		board.summonVampires(level);
 	}
-
+// resetea el juego e inicializa todos los objetos.
 	public void reset() {
 		this.ciclo = 0;
 		board = new GameObjectBoard(rng, this);
 		player = new Player(rng);
 	}
-
+// saca por pantalla el tablero.
 	public String printGame() {
 		
 		return this.printer.toString();
 	}
-
+// comprueba si el juego ha finalizado( de manera no forzada).
 	public int isFinished() {
 		int code = 0;
 
@@ -58,7 +59,7 @@ public class Game {
 	return code;
 
 	}
-
+// intenta poner un slayer en la pocision "X" e "Y".
 	public int addSlayer(int x, int y) {
 		int error = 0;
 
@@ -73,7 +74,7 @@ public class Game {
 
 		return error;
 	}
-
+// funciones getters.
 	public int getCiclo() {
 		return ciclo;
 	}

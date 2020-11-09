@@ -19,7 +19,7 @@ public class GamePrinter {
 		this.numRows = rows;
 		this.numCols = cols;
 	}
-	
+	//saca por pantalla el tablero segun el nivel, ademas de recorrer las lista de slayers y vampiros para colocarlo en la poscion correspondiente.
 	private void encodeGame(Game game) {
 		
 		board = new String[this.numRows][this.numCols];

@@ -26,12 +26,13 @@ public class Controller {
     private Game game;
     private Scanner scanner;
     private GamePrinter printer;
-
+    
+//cosntructor
     public Controller(Game game, Scanner scanner) {
 	    this.game = game;
 	    this.scanner = scanner;
     }
-
+//bucle del menu que devuele a la acion seleccionada(si esta el comando es correcto).
     private boolean menu() {
 
     	boolean salir = false;
@@ -119,10 +120,11 @@ public class Controller {
 
 
 		}
-
+       //ultima estado del juego.
 		System.out.printf("Ciclo: %d\nMonedas: %d\nVampiros Restantes: %d\nVampiros en tablero : %d", game.getCiclo(), game.getPlayer().getMonedas(), game.getBoard().getVampRestantes(), game.getBoard().getVampTablero());
 		System.out.println(this.game.printGame());
 
+		//mensaje del final.
 		if (game.isFinished() == 1)
 			System.out.println("Game over");
 

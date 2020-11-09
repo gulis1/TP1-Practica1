@@ -7,12 +7,13 @@ public class SlayerList {
 
 	private Slayer[] lista;
 	private int numSlayer;
-
+	
+	// constructor
 	public SlayerList() {
 		numSlayer = 0;
 		lista =  new Slayer[32];
 	}
-
+// elimina un slayer segun el indice.
 	public void delSlayer(int ind) {
 
 		numSlayer--;
@@ -23,6 +24,7 @@ public class SlayerList {
 		}
 	}
 
+	//añade un slayer a la lista.
 	public void addSlayer(Slayer slayer) {
 
 		lista[numSlayer] = slayer;
@@ -30,6 +32,7 @@ public class SlayerList {
 
 	}
 
+	//comprueba si hay  un slayer en la pocision "X" e "y".
 	public boolean existeSlayerEn(int x, int y) {
 
 		int i = 0;
@@ -47,7 +50,7 @@ public class SlayerList {
 		return existe;
 	}
 
-	// Le resta al vampiro que se encuentra en la posicion del tablero (x,y) un de vida. Si no hay vampiro en esa posicion no se hace nada.
+	// Le resta al slayer que se encuentra en la posicion del tablero (x,y) un de vida. Si no hay vampiro en esa posicion no se hace nada.
 	public void restarVidaA(int x, int y) {
 		int i = 0;
 		boolean encontrado = false;
@@ -64,6 +67,7 @@ public class SlayerList {
 
 	}
 
+	//recorre la lista para cada uno de los slayer ataquen.
 	public void attack() {
 
 		for (int i = 0; i < numSlayer; i++) {
@@ -72,6 +76,7 @@ public class SlayerList {
 		}
 	}
 
+	//recorre la lista y comprueba si hay slayers muertos, si lo hay lo elimina.
 	public void removeDeadSlayers() {
 
 		for (int i = 0; i < numSlayer; i++) {
@@ -79,7 +84,7 @@ public class SlayerList {
 				delSlayer(i);
 		}
 	}
-
+//funciones getters.
 	public Slayer[] getList() {
 		return lista;
 	}

@@ -5,13 +5,13 @@ import java.util.Random;
 public class Player {
     int monedas;
     Random rng;
-
+//constructor
     public Player (Random rng) {
         this.monedas = 50;
         this.rng = rng;
 
     }
-
+// comprueba si tiene monedas suficientes para comprar un slayer.(si tiene lo compra y le resta la cantidad)
     public Boolean restarMonedas (int x) {
         boolean suficientes = false;
 
@@ -22,13 +22,13 @@ public class Player {
 
         return suficientes;
     }
-
+  // añaden monedas segun el rng.
     public void addMonedas() {
         if (rng.nextFloat() > 0.5 ) {
             monedas += 10;
         }
     }
-
+// funcion getters.
     public int getMonedas() {
 
         return monedas;

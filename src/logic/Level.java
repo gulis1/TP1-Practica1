@@ -32,6 +32,8 @@ public enum Level {
         return allLevels.substring(0, allLevels.length() - separator.length());
     }
     
+    // getters 
+    
     public int getDimX() { return this.dim_x; }
     
     public int getDimY() { return this.dim_y; }

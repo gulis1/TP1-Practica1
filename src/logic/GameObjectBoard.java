@@ -12,7 +12,8 @@ public class GameObjectBoard {
 	private SlayerList slayerList;
 	private int vampRestantes;
 	private Random rng;
-
+	
+// constructor
 	public GameObjectBoard(Random rng, Game game) {
 		vampRestantes = game.getLevel().numVampirosLv();
 	    vampireList = new VampireList();
@@ -22,6 +23,7 @@ public class GameObjectBoard {
 
     }
 
+	//comprueba si exite un vampiro en la posicion en la que se quiere colocar (escogida a traves del rng)
     public void summonVampires(Level level) {
 
 		if (vampRestantes > 0 && rng.nextDouble() < level.getFrecuencia()) {
@@ -35,24 +37,28 @@ public class GameObjectBoard {
 		}
 
 	}
-
+//comprueba si hay un vampiro en "X" e "Y"
 	public boolean hayVampEn(int x, int y) {
 		return vampireList.existeVampEn(x,y);
 	}
 
+	//comprueba si hay un slayer en "X" e "Y"
 	public boolean haySlayerEn(int x, int y) {
 		return slayerList.existeSlayerEn(x,y);
 	}
 
+	//añade un slayer
 	public void addSlayer(int x, int y) {
 		slayerList.addSlayer(new Slayer(x,y, game));
 	}
 
+	//comprueba si puede poner un slayer en la posicion "X" e "Y".
 	public boolean sePuedePonerSlayerEn(int x, int y) {
 
 		return x >= 0 && x < game.getLevel().getDimX() - 1 && y >= 0 && y < game.getLevel().getDimY() && !hayVampEn(x,y) && !haySlayerEn(x,y);
 	}
 
+	//remueve los elementos muertos del tablero.
 	public void removeDead() {
 
 		vampireList.removeDeadVampires();
@@ -60,13 +66,13 @@ public class GameObjectBoard {
 
 
 	}
-
+//atacan los objetos del tablero.
 	public void attack() {
 		slayerList.attack();
 		vampireList.attack();
 		removeDead();
 	}
-
+// funciones getters.
 	public int getVampRestantes(){
 		return vampRestantes;
 	}

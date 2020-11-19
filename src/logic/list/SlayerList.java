@@ -1,24 +1,23 @@
 package logic.list;
 
+import logic.Game;
 import logic.gameObjects.Slayer;
 import logic.gameObjects.Vampiro;
 
 public class SlayerList {
 
 	private Slayer[] lista;
-	private int numSlayer;
-	
+
 	// constructor
-	public SlayerList() {
-		numSlayer = 0;
-		lista =  new Slayer[32];
+	public SlayerList(int dimx, int dimy) {
+		lista =  new Slayer[dimx*dimy];
 	}
 // elimina un slayer segun el indice.
 	public void delSlayer(int ind) {
 
-		numSlayer--;
+		Slayer.restarSlayer();
 
-		for (int i = ind; i < numSlayer; i++) {
+		for (int i = ind; i < Slayer.getNumSlayer(); i++) {
 
 			lista[i] = lista[i + 1];
 		}
@@ -27,8 +26,8 @@ public class SlayerList {
 	//añade un slayer a la lista.
 	public void addSlayer(Slayer slayer) {
 
-		lista[numSlayer] = slayer;
-		numSlayer++;
+		lista[Slayer.getNumSlayer()] = slayer;
+		Slayer.addSlayer();
 
 	}
 
@@ -38,7 +37,7 @@ public class SlayerList {
 		int i = 0;
 		boolean existe = false;
 
-		while (i < numSlayer && !existe) {
+		while (i < Slayer.getNumSlayer() && !existe) {
 
 			if (lista[i].getX() == x && lista[i].getY() == y){
 				existe = true;
@@ -55,7 +54,7 @@ public class SlayerList {
 		int i = 0;
 		boolean encontrado = false;
 
-		while (i < numSlayer && !encontrado ) {
+		while (i < Slayer.getNumSlayer() && !encontrado ) {
 
 			if ( lista[i].getX() == x && lista[i].getY() == y) {
 				lista[i].restarVida();
@@ -70,7 +69,7 @@ public class SlayerList {
 	//recorre la lista para cada uno de los slayer ataquen.
 	public void attack() {
 
-		for (int i = 0; i < numSlayer; i++) {
+		for (int i = 0; i < Slayer.getNumSlayer(); i++) {
 
 			lista[i].attack();
 		}
@@ -79,7 +78,7 @@ public class SlayerList {
 	//recorre la lista y comprueba si hay slayers muertos, si lo hay lo elimina.
 	public void removeDeadSlayers() {
 
-		for (int i = 0; i < numSlayer; i++) {
+		for (int i = 0; i < Slayer.getNumSlayer(); i++) {
 			if (lista[i].getVida() == 0)
 				delSlayer(i);
 		}
@@ -88,10 +87,5 @@ public class SlayerList {
 	public Slayer[] getList() {
 		return lista;
 	}
-
-	public int getNumSlayer(){
-		return numSlayer;
-	}
-
 
 }

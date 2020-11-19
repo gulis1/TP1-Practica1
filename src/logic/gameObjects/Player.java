@@ -3,8 +3,8 @@ package logic.gameObjects;
 import java.util.Random;
 
 public class Player {
-    int monedas;
-    Random rng;
+    private int monedas;
+    private Random rng;
 //constructor
     public Player (Random rng) {
         this.monedas = 50;

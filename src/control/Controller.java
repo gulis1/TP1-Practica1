@@ -48,37 +48,46 @@ public class Controller {
 
 				case "h":
 				case "help": {
-					System.out.println(helpMsg);
+					if (command.length == 1)
+						System.out.println(helpMsg);
+					else
+						System.out.println(invalidCommandMsg);
 					break;
+
 				}
 				case "e":
 				case "exit": {
-					salir = true;
+					if (command.length == 1)
+						salir = true;
+					else
+						System.out.println(invalidCommandMsg);
 					break;
 				}
 
 				case "a":
 				case "add": {
+					if (command.length == 1) {
+						try {
+							int error = game.addSlayer(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
 
-					try {
-						int error = game.addSlayer(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+							if (error == 0)
+								accionCorrecta = true;
 
-						if (error == 0)
-							accionCorrecta = true;
+							else if (error == 1)
+								System.out.println(invalidPositionMsg);
 
-						else if (error == 1)
-							System.out.println(invalidPositionMsg);
+							else
+								System.out.println(noCoinsMsg);
 
-						else
-							System.out.println(noCoinsMsg);
+						}
 
+						catch (Exception e) {
+							System.out.println(invalidCommandMsg);
+						}
 					}
 
-					catch (Exception e) {
+					else
 						System.out.println(invalidCommandMsg);
-					}
-
-
 
 					break;
 
@@ -86,8 +95,16 @@ public class Controller {
 
 				case "reset":
 				case "r": {
-					game.reset();
-					accionCorrecta = true;
+					if (command.length == 1) {
+						game.reset();
+						accionCorrecta = true;
+					}
+
+
+					else
+						System.out.println(invalidCommandMsg);
+
+					break;
 				}
 
 
@@ -107,21 +124,25 @@ public class Controller {
 
 		return salir;
 	}
+
+	public void printmsg() {
+		System.out.printf("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", game.getCiclo(), game.getPlayer().getMonedas(), game.getBoard().getVampRestantes(), game.getBoard().getVampTablero());
+	}
     
     public void run() {
 
     	boolean salir = false;
     	// Bucle del juego
 		while (game.isFinished() == 0 && !salir){
-			System.out.printf("Ciclo: %d\nMonedas: %d\nVampiros Restantes: %d\nVampiros en tablero : %d", game.getCiclo(), game.getPlayer().getMonedas(), game.getBoard().getVampRestantes(), game.getBoard().getVampTablero());
+			printmsg();
 			System.out.println(this.game.printGame());
-			salir = menu();
 			game.update();
+			salir = menu();
 
 
 		}
-       //ultima estado del juego.
-		System.out.printf("Ciclo: %d\nMonedas: %d\nVampiros Restantes: %d\nVampiros en tablero : %d", game.getCiclo(), game.getPlayer().getMonedas(), game.getBoard().getVampRestantes(), game.getBoard().getVampTablero());
+       //ultimo estado del juego.
+		printmsg();
 		System.out.println(this.game.printGame());
 
 		//mensaje del final.

@@ -4,15 +4,17 @@ import logic.Game;
 
 public class Vampiro {
 	private int x, y, vida;
-	private Game game;
+	private static Game game;
 	private boolean shouldMove;
+
+	private static int numVamp = 0;
 	
 	// constructor
-	public Vampiro(int x, int y, Game game) {
+	public Vampiro(int x, int y, Game game1) {
 		this.vida = 5;
 		this.x = x;
 		this.y = y;
-		this.game = game;
+		game = game1;
 		this.shouldMove = false;
 	}
 
@@ -40,6 +42,8 @@ public class Vampiro {
 
 		}
 	}
+
+
 	// resta vida al vampiro.
 	public void restarVida() {
 		vida--;
@@ -53,11 +57,40 @@ public class Vampiro {
 	public int getY() {
 		return y;
 	}
-
 	
 	public int getVida() {
 		return vida;
 	}
-    
+
+	public static int getNumVamp() {
+		return numVamp;
+	}
+
+	public static void addVampiro() {
+		numVamp++;
+	}
+
+	public static boolean llegaronAlFinal() {
+		int i = 0;
+		boolean fin = false;
+
+		while( i < Vampiro.getNumVamp() && !fin) {
+			if (game.getBoard().getVampireList().getList()[i].getX() == 0) {
+				fin = true;
+			}
+
+			i++;
+		}
+
+		return fin;
+	}
+
+	public static void restarVampiro() {
+		numVamp--;
+	}
+
+	public static void resetVampiros() {
+		numVamp = 0;
+	}
 
 }

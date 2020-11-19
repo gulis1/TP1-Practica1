@@ -25,7 +25,7 @@ public class GamePrinter {
 		board = new String[this.numRows][this.numCols];
 
 		Vampiro[] listaV = game.getBoard().getVampireList().getList();
-		int contV = game.getBoard().getVampireList().getNumVamp();
+		int contV = Vampiro.getNumVamp();
 
 		for (int i=0; i <numRows; i++){
 			for (int j=0; j< numCols; j++){
@@ -39,7 +39,7 @@ public class GamePrinter {
 		}
 
 		Slayer[] listaS = game.getBoard().getSlayerList().getList();
-		int contS = game.getBoard().getSlayerList().getNumSlayer();
+		int contS = Slayer.getNumSlayer();
 
 		for (int i=0; i<contS; i++) {
 			board[listaS[i].getY()][listaS[i].getX()] = String.format("S [%d]", listaS[i].getVida());

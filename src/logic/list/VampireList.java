@@ -5,20 +5,19 @@ import logic.gameObjects.Vampiro;
 
 public class VampireList {
     private Vampiro[] lista;
-    private int numVamp;
+
 
 // constructor
-    public  VampireList() {
-        this.lista =  new Vampiro[10];
-        this.numVamp = 0;
+    public  VampireList(int numVampLV) {
+        this.lista =  new Vampiro[numVampLV];
     }
     
 //Borra el vampiro en la posicion indice .
     public void delVampire(int ind) {
 
-        numVamp--;
+        Vampiro.restarVampiro();
 
-        for (int i=ind; i < numVamp; i++) {
+        for (int i=ind; i < Vampiro.getNumVamp(); i++) {
 
             lista[i] = lista[i+1];
         }
@@ -27,15 +26,16 @@ public class VampireList {
     // añade un vampiro a la lista.
     public void addVampire(Vampiro vamp) {
 
-        lista[numVamp] = vamp;
-        numVamp++;
+        lista[Vampiro.getNumVamp()] = vamp;
+        Vampiro.addVampiro();
+
 
     }
     
 //Recorre la lista para que los vampiros ataquen.
     public void attack() {
 
-        for (int i = 0; i < numVamp; i++) {
+        for (int i = 0; i < Vampiro.getNumVamp(); i++) {
 
             lista[i].attack();
         }
@@ -43,7 +43,7 @@ public class VampireList {
 
     //recorre la lista para hacer que los vampiros se muevan en su turno
     public void move() {
-        for (int i = 0; i < numVamp; i++) {
+        for (int i = 0; i < Vampiro.getNumVamp(); i++) {
 
             lista[i].move();
         }
@@ -55,7 +55,7 @@ public class VampireList {
         int i = 0;
         boolean existe = false;
 
-        while (i < numVamp && !existe) {
+        while (i < Vampiro.getNumVamp() && !existe) {
 
             if (lista[i].getX() == x && lista[i].getY() == y && lista[i].getVida() > 0){
                 existe = true;
@@ -67,28 +67,12 @@ public class VampireList {
         return existe;
     }
 
-    // comprueba si hay un vampiro en la ultima columna del tablero.
-    public boolean alguienEnFinal() {
-        int i = 0;
-        boolean fin = false;
-
-        while( i < numVamp && !fin) {
-            if (lista[i].getX() == 0) {
-                fin = true;
-            }
-
-            i++;
-        }
-
-        return fin;
-    }
-
     // Le resta vida al vampiro que se encuentra en la posicion del tablero (x,y) un de vida. Si no hay vampiro en esa posicion no se hace nada.
     public void restarVidaA(int x, int y) {
         int i = 0;
         boolean encontrado = false;
 
-        while (i < numVamp && !encontrado ) {
+        while (i < Vampiro.getNumVamp() && !encontrado ) {
 
             if ( lista[i].getX() == x && lista[i].getY() == y) {
                 lista[i].restarVida();
@@ -103,7 +87,7 @@ public class VampireList {
     //comprueba si un vampiro esta muerto para eliminarlo de la lista.
     public void removeDeadVampires() {
 
-        for (int i = 0; i < numVamp; i++) {
+        for (int i = 0; i < Vampiro.getNumVamp(); i++) {
             if (lista[i].getVida() <= 0)
                 delVampire(i);
         }
@@ -114,7 +98,4 @@ public class VampireList {
         return lista;
     }
 
-    public int getNumVamp(){
-        return numVamp;
-    }
 }

@@ -6,6 +6,7 @@ public class Slayer {
 	
 	
 	private int x, y, vida;
+	private static int numSlayer = 0;
 	final int dmg;
 	private Game game;
 	
@@ -53,6 +54,20 @@ public class Slayer {
 	public int getVida() {
 		return vida;
 	}
-	      
 
+	public static int getNumSlayer() {
+		return numSlayer;
+	}
+
+	public static void addSlayer() {
+		numSlayer++;
+	}
+
+	public static void restarSlayer() {
+		numSlayer--;
+	}
+
+	public static void resetSlayer() {
+		numSlayer = 0;
+	}
 }

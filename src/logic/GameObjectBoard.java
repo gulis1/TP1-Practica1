@@ -16,10 +16,12 @@ public class GameObjectBoard {
 // constructor
 	public GameObjectBoard(Random rng, Game game) {
 		vampRestantes = game.getLevel().numVampirosLv();
-	    vampireList = new VampireList();
-	    slayerList = new SlayerList();
+	    vampireList = new VampireList(game.getLevel().numVampirosLv());
+	    slayerList = new SlayerList(game.getLevel().getDimX(), game.getLevel().getDimY());
 	    this.rng= rng;
 	    this.game = game;
+	    Vampiro.resetVampiros();
+	    Slayer.resetSlayer();
 
     }
 
@@ -63,9 +65,12 @@ public class GameObjectBoard {
 
 		vampireList.removeDeadVampires();
 		slayerList.removeDeadSlayers();
-
-
 	}
+
+	public void move() {
+		vampireList.move();
+	}
+
 //atacan los objetos del tablero.
 	public void attack() {
 		slayerList.attack();
@@ -78,7 +83,7 @@ public class GameObjectBoard {
 	}
 
 	public int getVampTablero() {
-		return vampireList.getNumVamp();
+		return Vampiro.getNumVamp();
 	}
 
 	public VampireList getVampireList() {

@@ -1,6 +1,7 @@
 package logic;
 
 import logic.gameObjects.Player;
+import logic.gameObjects.Vampiro;
 import view.GamePrinter;
 
 import java.util.Random;
@@ -31,7 +32,7 @@ public class Game {
 	public void update() {
 		ciclo++;
 		player.addMonedas();
-		board.getVampireList().move();
+		board.move();
 		board.attack();
 		board.summonVampires(level);
 	}
@@ -50,7 +51,7 @@ public class Game {
 	public int isFinished() {
 		int code = 0;
 
-		if (board.getVampireList().alguienEnFinal())
+		if (Vampiro.llegaronAlFinal())
 		 	code = 1;
 
 		else if (board.getVampRestantes() == 0 && board.getVampTablero() == 0)
